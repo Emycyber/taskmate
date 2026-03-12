@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 from pathlib import Path
 import os
 import environ
+import dj_database_url
 
 env = environ.Env()
 environ.Env.read_env()
@@ -91,6 +92,7 @@ WSGI_APPLICATION = 'taskmate.wsgi.application'
 
 DATABASES = {
     'default' : {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL")),
         'ENGINE' : 'django.db.backends.postgresql',
         'NAME' : env("DJANGO_DB_NAME"),
         'USER' : env("DJANGO_DB_USER"),
