@@ -1,1 +1,1 @@
-python manage.py collectstatic --noinput && python manage.py migrate && gunicorn taskmate.wsgi:application
+web: python manage.py migrate && python manage.py collectstatic --noinput && gunicorn taskmate.wsgi:application
