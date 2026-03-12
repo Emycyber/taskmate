@@ -92,16 +92,10 @@ WSGI_APPLICATION = 'taskmate.wsgi.application'
 
 
 DATABASES = {
-    'default' : {
-        'default': dj_database_url.config(default=os.environ.get("DATABASE_URL")),
-        'NAME' : env("DJANGO_DB_NAME"),
-        'USER' : env("DJANGO_DB_USER"),
-        'PASSWORD' : env("DJANGO_DB_PASSWORD"),
-        'HOST' : env("DJANGO_DB_HOST"),
-        'PORT' : env("DJANGO_DB_PORT"),
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get("DATABASE_URL")
+    )
 }
-
 
 
 
