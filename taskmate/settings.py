@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -92,8 +93,7 @@ WSGI_APPLICATION = 'taskmate.wsgi.application'
 
 DATABASES = {
     'default' : {
-        'default': dj_database_url.parse(os.environ.get("DATABASE_URL")),
-        'ENGINE' : 'django.db.backends.postgresql',
+        'default': dj_database_url.config(default=os.environ.get("DATABASE_URL")),
         'NAME' : env("DJANGO_DB_NAME"),
         'USER' : env("DJANGO_DB_USER"),
         'PASSWORD' : env("DJANGO_DB_PASSWORD"),
@@ -101,6 +101,9 @@ DATABASES = {
         'PORT' : env("DJANGO_DB_PORT"),
     }
 }
+
+
+
 
 
 # Password validation
