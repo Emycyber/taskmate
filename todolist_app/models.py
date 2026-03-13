@@ -9,7 +9,7 @@ class TaskList(models.Model):
     done = models.BooleanField(default=False)
     
     class Meta:
-        ordering=[id]
+        ordering=['id']
     
     def __str__(self):
         return self.task + " _ " + str(self.done)

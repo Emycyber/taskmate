@@ -11,12 +11,13 @@ from django.contrib.auth.decorators import login_required
 def todolist(request): 
     if request.method == "POST":
         form = TaskForm(request.POST or None)
+        # ✅ Fix it like this
         if form.is_valid():
             instance = form.save(commit=False)
             instance.manage = request.user
-            form.save()
-        messages.success(request, ("New Task Added"))    
-        return redirect('todolist')    
+            instance.save()  # save the instance, not the form again
+            messages.success(request, ("New Task Added"))
+        return redirect('todolist')   
     else:
         all_tasks = TaskList.objects.filter(manage=request.user)
         paginator = Paginator(all_tasks, 5) #Creating a paginator instance
