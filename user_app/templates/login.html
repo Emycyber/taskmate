@@ -1,36 +1,131 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block title %}
+<title>Login - Taskmate</title>
+{% endblock title %} {% block content %}
 
-{% block title %}
-    <title>Login - Taskmate</title>
-{% endblock title %}
+<section
+  style="
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9f5ff 100%);
+    min-height: 90vh;
+  ">
+  <!--
+        min-height: 90vh: fills the screen height on mobile
+        linear-gradient: matches your index page for a consistent look
+    -->
 
-{% block content %}
-    <div class="container mt-5">
+  <div class="container py-5">
+    <!--
+            container: centers content and adds horizontal padding
+            py-5: vertical padding top and bottom so content breathes
+        -->
 
-        </br>
-<div class="col-12 col-sm-6 col-lg-4">
-        <h2 class="mb-3">Login on TaskMate</h2>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button"
-                                class="btn-close"
-                                data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-            {% endif %}
+    <div class="row justify-content-center align-items-center min-vh-75">
+      <!--
+                row: Bootstrap grid row
+                justify-content-center: horizontally centers the card on big screens
+                align-items-center: vertically centers the card
+            -->
 
-        <form method="POST" class="col-6">
-            {% csrf_token %}
+      <div class="col-12 col-sm-10 col-md-6 col-lg-4">
+        <!--
+                    col-12: full width on mobile (your main requirement)
+                    col-sm-10: slightly narrower on large phones
+                    col-md-6: half width on tablets
+                    col-lg-4: one third width on desktop, nicely centered
+                -->
 
-            {{ form|crispy }}
+        <div class="card border-0 shadow p-4 p-md-5">
+          <!--
+                        card: Bootstrap card component
+                        border-0: removes default card border for a cleaner look
+                        shadow: soft shadow to lift the card off the background
+                        p-4: padding on mobile
+                        p-md-5: more padding on larger screens
+                    -->
 
-            <button class="btn btn-primary mb-5" type="submit">Login</button>
+          <!-- Logo / Icon -->
+          <div class="text-center mb-4">
+            <!--
+                            text-center: centers the icon and title
+                            mb-4: space below before the form
+                        -->
+            <div style="font-size: 2.5rem">✅</div>
+            <h4 class="fw-bold mt-2" style="color: #1a1a2e">Welcome Back</h4>
+            <!--
+                            fw-bold: bold heading
+                            mt-2: small top margin after icon
+                        -->
+            <p class="text-muted small mb-0">Login to your Taskmate account</p>
+            <!--
+                            text-muted: grey subtitle text
+                            small: smaller font size
+                            mb-0: removes default bottom margin
+                        -->
+          </div>
 
-        </form>
+          <!-- Alert Messages -->
+          {% if messages %} {% for message in messages %}
+          <div
+            class="alert alert-primary alert-dismissible fade show small"
+            role="alert">
+            <!--
+                                    alert: Bootstrap alert box
+                                    alert-primary: blue color matching brand
+                                    alert-dismissible: allows the close button to work
+                                    fade show: smooth fade animation when dismissed
+                                    small: smaller text inside alert
+                                -->
+            {{ message }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"></button>
+          </div>
+          {% endfor %} {% endif %}
+
+          <!-- Login Form -->
+          <form method="POST">
+            {% csrf_token %} {{ form|crispy }}
+
+            <div class="d-grid mt-3">
+              <!--
+                                d-grid: makes the button stretch full width of the card
+                                mt-3: margin top above the button
+                            -->
+              <button class="btn btn-primary btn-lg py-2" type="submit">
+                <!--
+                                    btn-primary: blue filled button
+                                    btn-lg: larger button, easier to tap on mobile
+                                    py-2: vertical padding for a comfortable tap target
+                                -->
+                Login
+              </button>
+            </div>
+          </form>
+
+          <!-- Register Link -->
+          <p class="text-center text-muted small mt-4 mb-0">
+            <!--
+                            text-center: centers the text
+                            mt-4: space above the link
+                            mb-0: removes bottom margin
+                        -->
+            Don't have an account?
+            <a
+              href="{% url 'register' %}"
+              class="text-primary fw-bold text-decoration-none">
+              <!--
+                                text-primary: blue matching brand color
+                                fw-bold: stands out from surrounding text
+                                text-decoration-none: removes underline
+                            -->
+              Register here
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
-    </div>
+  </div>
+</section>
+
 {% endblock content %}
