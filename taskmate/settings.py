@@ -33,6 +33,8 @@ DEBUG = env("DJANGO_DEBUG")
 
 ALLOWED_HOSTS = ["taskmatemy.up.railway.app"]
 
+CSRF_TRUSTED_ORIGINS = ["https://taskmatemy.up.railway.app"]
+
 
 # Application definition
 
