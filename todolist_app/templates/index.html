@@ -1,36 +1,151 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block title %}
     <title>Welcome to Taskmate</title>
 {% endblock title %}
+
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-4">
-                <img src="{% static 'images/stickynotes.png' %}" alt="Notes" />
-            </div>
-            <div class="col-lg-4">
-                <img src="{% static 'images/stickynotes.png' %}" alt="Notes" />
-            </div>
-            <div class="col-lg-4">
-                <img src="{% static 'images/stickynotes.png' %}" alt="Notes" />
+
+<!-- Hero Section -->
+<section class="py-5" style="background: linear-gradient(135deg, #f8f9fa 0%, #e9f5ff 100%); min-height: 90vh;">
+    <div class="container py-4">
+
+        <!-- Headline -->
+        <div class="row justify-content-center text-center mb-5">
+            <div class="col-12 col-md-10 col-lg-8">
+                <!--
+                    col-12: full width on mobile
+                    col-md-10: 10/12 width on tablets
+                    col-lg-8: 8/12 width on desktop
+                    This keeps text from stretching too wide on large screens
+                -->
+                <span class="badge bg-primary mb-3 px-3 py-2" style="font-size: 0.85rem; letter-spacing: 1px;">
+                    ✅ YOUR PRODUCTIVITY PARTNER
+                </span>
+                <!--
+                    badge: pill-shaped label
+                    px-3 py-2: horizontal and vertical padding
+                -->
+
+                <h1 class="display-5 fw-bold mb-3" style="color: #1a1a2e; line-height: 1.2;">
+                    <!--
+                        display-5: large, impactful heading size
+                        fw-bold: font-weight bold
+                        line-height custom: tighter line spacing for headlines
+                    -->
+                    Quick And Easy To Use,<br>
+                    <span style="color: #0d6efd;">Anytime, Anywhere.</span>
+                </h1>
+
+                <p class="lead text-muted mb-4">
+                    <!--
+                        lead: slightly larger, lighter paragraph text
+                        text-muted: grey color, good for subtitles
+                        mb-4: margin bottom spacing
+                    -->
+                    Plan your day better and get your life organized. Taskmate keeps all your tasks in one place.
+                </p>
+
+                <a href="{% url 'todolist' %}" class="btn btn-primary btn-lg px-5 py-3 shadow">
+                    <!--
+                        btn: base button style
+                        btn-primary: blue filled button
+                        btn-lg: larger button size - easier to tap on mobile
+                        px-5: wide horizontal padding for a bold CTA
+                        py-3: comfortable vertical padding
+                        shadow: subtle drop shadow for depth
+                    -->
+                    Let's Get Started 🚀
+                </a>
             </div>
         </div>
-        <div class="row mt-5 mb-10">
-            <div>
-                <center>
-                    <p class="h1">Quick And Esy To Use, Anytime, Anywhere!</p>
-                </center>
-                <center>
-                    <p class="h2">Plan Your Day Better, Get Yiur Life Organized</p>
-                </center>
-                <center>
-                    <p class="h5">TASKMATE Lets You Keep Track Of Your Task In One Place.</p>
-                </center>
-                <center>
-                   <a href="{% url 'todolist' %}"> <button type="button" class="btn btn-primary btn-lg">Let's Get Started</button> </a>
-                </center>
+
+        <!-- Feature Cards -->
+        <div class="row g-4 justify-content-center">
+            <!--
+                g-4: gap between cards (gutters), prevents cards from touching
+                justify-content-center: centers cards horizontally
+            -->
+
+            <!-- Card 1 -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <!--
+                    col-12: stacks full width on mobile (each card on its own row)
+                    col-sm-6: two cards per row on small tablets
+                    col-lg-4: three cards per row on desktop
+                    This is the core of mobile-first responsive design
+                -->
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <!--
+                        card: Bootstrap card component
+                        h-100: full height so all cards are equal height
+                        border-0: removes default card border
+                        shadow-sm: soft shadow for a floating effect
+                        p-4: internal padding on all sides
+                    -->
+                    <div class="mb-3" style="font-size: 2.5rem;">📋</div>
+                    <h5 class="fw-bold mb-2">Organize Tasks</h5>
+                    <!--
+                        fw-bold: bold card title
+                        mb-2: small margin below title
+                    -->
+                    <p class="text-muted small">
+                        <!--
+                            text-muted: grey text for descriptions
+                            small: slightly smaller font size
+                        -->
+                        Keep all your tasks neatly organized in one place. Never forget what needs to be done.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="mb-3" style="font-size: 2.5rem;">⚡</div>
+                    <h5 class="fw-bold mb-2">Stay Productive</h5>
+                    <p class="text-muted small">
+                        Plan your day with ease and stay on top of your goals, no matter where you are.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-12 col-sm-6 col-lg-4">
+                <div class="card h-100 border-0 shadow-sm text-center p-4">
+                    <div class="mb-3" style="font-size: 2.5rem;">🌍</div>
+                    <h5 class="fw-bold mb-2">Access Anywhere</h5>
+                    <p class="text-muted small">
+                        Available on any device, anytime. Your tasks are always with you wherever you go.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom CTA -->
+        <div class="row mt-5">
+            <div class="col-12 text-center">
+                <!--
+                    col-12: always full width
+                    text-center: centers everything inside
+                -->
+                <p class="text-muted small">
+                    Already have an account?
+                    <a href="{% url 'login' %}" class="text-primary fw-bold text-decoration-none">
+                        <!--
+                            text-primary: blue link color matching brand
+                            fw-bold: bold to stand out
+                            text-decoration-none: removes default underline
+                        -->
+                        Log in here
+                    </a>
+                </p>
             </div>
         </div>
+
     </div>
+</section>
+
 {% endblock content %}
