@@ -1,35 +1,134 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% extends "base.html" %} {% load crispy_forms_tags %} {% block title %}
+<title>Register - Taskmate</title>
+{% endblock title %} {% block content %}
 
-{% block title %}
-    <title>Register - Taskmate</title>
-{% endblock title %}
+<section
+  style="
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9f5ff 100%);
+    min-height: 90vh;
+  ">
+  <!--
+        min-height: 90vh: fills the screen height on mobile
+        linear-gradient: consistent with your index and login pages
+    -->
 
-{% block content %}
-    <div class="container mt-5">
+  <div class="container py-5">
+    <!--
+            container: centers content and adds horizontal padding
+            py-5: vertical breathing room top and bottom
+        -->
 
-        </br>
+    <div class="row justify-content-center">
+      <!--
+                row: Bootstrap grid row
+                justify-content-center: horizontally centers card on big screens
+            -->
 
-        <h2 class="mb-3">Register on TaskMate</h2>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-primary alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button"
-                                class="btn-close"
-                                data-bs-dismiss="alert"
-                                aria-label="Close"></button>
-                    </div>
-                {% endfor %}
-            {% endif %}
+      <div class="col-12 col-sm-10 col-md-7 col-lg-5">
+        <!--
+                    col-12: full width on mobile (your main requirement)
+                    col-sm-10: slightly narrower on large phones
+                    col-md-7: medium width on tablets (register has more fields than login)
+                    col-lg-5: slightly wider than login card to fit registration fields
+                -->
 
-        <form method="POST" class="col-6">
-            {% csrf_token %}
+        <div class="card border-0 shadow p-4 p-md-5">
+          <!--
+                        card: Bootstrap card component
+                        border-0: removes default border for a cleaner look
+                        shadow: lifts card off the background
+                        p-4: padding on mobile
+                        p-md-5: more padding on larger screens
+                    -->
 
-            {{ register_form|crispy }}
+          <!-- Icon and Title -->
+          <div class="text-center mb-4">
+            <!--
+                            text-center: centers icon and heading
+                            mb-4: space below before the form
+                        -->
+            <div style="font-size: 2.5rem">👋</div>
+            <h4 class="fw-bold mt-2" style="color: #1a1a2e">
+              Create an Account
+            </h4>
+            <!--
+                            fw-bold: bold heading
+                            mt-2: small space after icon
+                        -->
+            <p class="text-muted small mb-0">
+              Join Taskmate and get organized today
+            </p>
+            <!--
+                            text-muted: grey subtitle
+                            small: smaller font size
+                            mb-0: removes bottom margin
+                        -->
+          </div>
 
-            <button class="btn btn-primary mb-5" type="submit">Register</button>
+          <!-- Alert Messages -->
+          {% if messages %} {% for message in messages %}
+          <div
+            class="alert alert-primary alert-dismissible fade show small"
+            role="alert">
+            <!--
+                                    alert: Bootstrap alert box
+                                    alert-primary: blue brand color
+                                    alert-dismissible: enables close button
+                                    fade show: smooth dismiss animation
+                                    small: compact text inside alert
+                                -->
+            {{ message }}
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="alert"
+              aria-label="Close"></button>
+          </div>
+          {% endfor %} {% endif %}
 
-        </form>
+          <!-- Register Form -->
+          <form method="POST">
+            {% csrf_token %} {{ register_form|crispy }}
+
+            <div class="d-grid mt-3">
+              <!--
+                                d-grid: stretches button to full card width
+                                mt-3: margin above button
+                            -->
+              <button class="btn btn-primary btn-lg py-2" type="submit">
+                <!--
+                                    btn-primary: blue filled button
+                                    btn-lg: large, easy to tap on mobile
+                                    py-2: comfortable vertical padding
+                                -->
+                Create Account
+              </button>
+            </div>
+          </form>
+
+          <!-- Login Link -->
+          <p class="text-center text-muted small mt-4 mb-0">
+            <!--
+                            text-center: centers the text
+                            mt-4: space above link
+                            mb-0: removes bottom margin
+                        -->
+            Already have an account?
+            <a
+              href="{% url 'login' %}"
+              class="text-primary fw-bold text-decoration-none">
+              <!--
+                                text-primary: blue brand color
+                                fw-bold: stands out from surrounding text
+                                text-decoration-none: removes underline
+                            -->
+              Login here
+            </a>
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+</section>
+
 {% endblock content %}
